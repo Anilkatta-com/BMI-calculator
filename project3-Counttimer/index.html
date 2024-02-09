@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown Timer</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <h1>Countdown Timer</h1>
+    <p id="countdown">00:00:00</p><br>
+    <button onclick="startTimer()">Start</button>
+    <button onclick="stopTimer()">Stop</button>
+    <button onclick="resetTimer()">Reset</button>
+    <!DOCTYPE html>
+
+    <script>
+        var timer;
+        var ele = document.getElementById('countdown');
+        var hours = 0;
+        var minutes = 0;
+        var seconds = 0;
+
+        function startTimer() {
+            clearInterval(timer); // Clear any existing timer to prevent multiple intervals running simultaneously
+            timer = setInterval(function () {
+                seconds++;
+
+                if (seconds === 60) {
+                    seconds = 0;
+                    minutes++;
+
+                    if (minutes === 60) {
+                        minutes = 0;
+                        hours++;
+                    }
+                }
+
+                var hoursStr = hours < 10 ? '0' + hours : hours;
+                var minutesStr = minutes < 10 ? '0' + minutes : minutes;
+                var secondsStr = seconds < 10 ? '0' + seconds : seconds;
+
+                ele.innerHTML = hoursStr + ':' + minutesStr + ':' + secondsStr;
+            }, 1000);
+        }
+
+        function stopTimer() {
+            clearInterval(timer);
+        }
+
+        function resetTimer() {
+            clearInterval(timer);
+            hours = 0;
+            minutes = 0;
+            seconds = 0;
+            ele.innerHTML = '00:00:00';
+        }
+    </script>
+</body>
+
+</html>
